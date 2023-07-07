@@ -1,0 +1,39 @@
+<app-menu></app-menu>
+
+<ion-content class="ion-page" id="main-content" [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+  <ion-header >
+    <ion-toolbar collapse="condense">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title color ="primary" class="" >
+        Study App
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-list>
+      <!--
+        <app-message *ngFor="let message of getMessages()" [message]="message"></app-message>
+      --> 
+      <ion-item *ngFor="let usuario of usuarios" >
+        
+        <ion-label [routerLink]="'/view-message/' + usuario.id" >{{usuario.id}} - {{usuario.name}} - {{usuario.last_name}} </ion-label>
+        <ion-icon   color="success" slot="end" name="pencil-outline" [routerLink]= "'/edit-user/' + usuario.id" ></ion-icon>
+        <ion-icon  color="primary" slot="end" name="trash-outline"  (click) ="deleteUser(usuario.id)"></ion-icon>
+
+      </ion-item>
+    </ion-list>
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button routerLink= "/edit-user/0">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+      
+    </ion-fab>
+  </ion-content>
+  
+</ion-content>
